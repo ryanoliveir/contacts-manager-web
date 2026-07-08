@@ -1,0 +1,40 @@
+@import url("https://fonts.googleapis.com/css2?family=Schibsted+Grotesk&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --color-background-primary: #111111;
+  --color-background-secondary: #1b1b1b;
+  --color-background-tertiary: #303030;
+  --color-border-primary: #303030;
+  --color-content-primary: #ffffff;
+  --color-content-body: #e2e2d2;
+  --color-content-heading: #c6c6c6;
+  --color-contenct-muted: #5e5e5e;
+  --color-content-placeholder: #777777;
+  --color-content-inverse: #111111;
+  --color-accent-brand: #c4f120;
+  --color-accent-red: #e61e32;
+
+  --font-sans: "Schibsted Grotesk", sans-serif;
+
+  --text-heading: 24px;
+  --text-heading--line-height: 32px;
+
+  --text-large: 16px;
+  --text-large--line-height: 24px;
+
+  --text-medium: 14px;
+  --text-medium--line-height: 22px;
+
+  --text-small: 12px;
+  --text-small--line-height: 20px;
+
+  --text-xsmall: 10px;
+  --text-xsmall--line-height: 14px;
+
+  --text-label-medium: 14px;
+  --text-label-medium--line-height: 22px;
+
+  --text-label-small: 12px;
+  --text-label-small--line-height: 20px;
+}
