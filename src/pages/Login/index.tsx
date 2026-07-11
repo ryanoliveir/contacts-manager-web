@@ -5,7 +5,7 @@ import Button from "../../components/Button";
 
 function LoginPage() {
   return (
-    <div className="flex flex-col gap-5 h-full justify-center max-w-sm mx-auto">
+    <div className="flex flex-col gap-5 h-full py-5  sm:justify-center max-w-sm mx-auto">
       <h1 className="text-heading leading-8 font-bold">Acessar conta</h1>
       <div className="flex flex-col gap-1">
         <Label>E-mail</Label>
@@ -16,7 +16,7 @@ function LoginPage() {
         <Input type="text" placeholder="Insira sua senha" />
       </div>
 
-      <div className="text-medium">
+      <div className="text-medium mt-auto sm:mt-0 order-last sm:order-0 text-center">
         <p className="text-content-body">
           Não tem uma conta ?{" "}
           <Link to="/register">

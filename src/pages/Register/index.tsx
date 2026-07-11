@@ -5,7 +5,7 @@ import Button from "../../components/Button";
 
 function RegisterPage() {
   return (
-    <div className="flex flex-col gap-5 h-full justify-center max-w-sm mx-auto font-medi">
+    <div className="flex flex-col gap-5 h-full  py-5 justify-center max-w-sm mx-auto font-medium">
       <h1 className="text-heading leading-8 font-bold">Criar conta</h1>
       <div className="flex flex-col gap-1">
         <Label>Nome</Label>
@@ -24,7 +24,7 @@ function RegisterPage() {
         <Input type="password" placeholder="Insira novamente sua senha." />
       </div>
 
-      <div className="text-medium">
+      <div className="text-medium mt-auto sm:mt-0 order-last sm:order-0 text-center">
         <p className="text-content-body">
           Já tem uma conta ?{" "}
           <Link to="/login">
