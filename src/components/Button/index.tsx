@@ -2,11 +2,15 @@ import type { ReactNode } from "react";
 
 interface ButtonProps {
   children: ReactNode;
+  type?: "submit" | "reset" | "button";
 }
 
-function Button({ children }: ButtonProps) {
+function Button({ type, children }: ButtonProps) {
   return (
-    <button className="bg-accent-brand text-content-inverse h-11.5 rounded-xl text-label-medium font-bold">
+    <button
+      type={type}
+      className="bg-accent-brand text-content-inverse h-11.5 rounded-xl text-label-medium font-bold"
+    >
       {children}
     </button>
   );
