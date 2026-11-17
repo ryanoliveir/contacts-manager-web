@@ -10,7 +10,7 @@ function Sidebar() {
   return (
     <>
       <div
-        className="min-h-screen bg-background-primary "
+        className="min-h-screen bg-background-full"
         onClick={() => setIsCollapsed(!isCollapsed)}
       >
         <div className="flex h-screen">
@@ -101,7 +101,7 @@ function Sidebar() {
           </div>
         </div>
       </div>
-      <nav className="fixed w-full bottom-0 flex py-4 justify-center gap-25 text-contenct-muted md:hidden bg-background-primary ">
+      <nav className="fixed w-full bottom-0 flex py-4 justify-center gap-25 text-contenct-muted md:hidden bg-background-full">
         <div className="px-3 py-2 rounded-xl flex items-center justify-start hover:text-content-inverse hover:bg-accent-brand transition-colors duration-300">
           <UsersRound className="shrink-0" size={20} />
         </div>
