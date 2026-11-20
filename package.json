@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^5.4.0",
+    "@react-input/mask": "^2.0.4",
     "@tailwindcss/vite": "^4.3.2",
     "clsx": "^2.1.1",
     "lucide": "^1.24.0",
@@ -22,7 +23,9 @@
     "react-router-dom": "^7.18.1",
     "tailwind-merge": "^3.6.0",
     "tailwindcss": "^4.3.2",
-    "zod": "^4.4.3"
+    "uuid": "^14.0.3",
+    "zod": "^4.4.3",
+    "zustand": "^5.1.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
