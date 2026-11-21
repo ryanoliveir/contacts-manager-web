@@ -13,5 +13,7 @@ export type Contacts = {
 export type ContactStore = {
   contacts: Contact[];
   isUnlocked: boolean;
+  showContactsPassword: string;
+  validatedPassword: (input: string) => boolean;
   toggleGlobalUnlock: () => void;
 };

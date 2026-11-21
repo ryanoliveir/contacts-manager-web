@@ -2,7 +2,7 @@ import { Phone, Mail, Pencil, Trash } from "lucide-react";
 import { getInitials, formatPhone } from "../../utils";
 import LockToggle from "../LockToogle";
 import { useContactStore } from "../../store/contacts";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 interface ContacCardProps {
   id?: string;
@@ -12,7 +12,7 @@ interface ContacCardProps {
   tag?: string;
 }
 
-function ContactCard({ name, phone, email, tag, isLock }: ContacCardProps) {
+function ContactCard({ name, phone, email, tag }: ContacCardProps) {
   const [isIndividuallyOpen, setIsIndividuallyOpen] = useState(false);
   const { isUnlocked } = useContactStore();
 
