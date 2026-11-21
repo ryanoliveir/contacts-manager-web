@@ -40,3 +40,7 @@
   --text-label-small: 12px;
   --text-label-small--line-height: 20px;
 }
+
+body {
+  background-color: var(--color-background-primary);
+}

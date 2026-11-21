@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Input from "../../../../components/Input";
 import Label from "../../../../components/Label";
 import Button from "../../../../components/Button";
@@ -18,9 +18,10 @@ function LoginForm() {
   } = useForm<LoginFormSchema>({
     resolver: zodResolver(loginFormSchema),
   });
-
+  const navigate = useNavigate();
   function onSubmitLoginForm(data: LoginFormSchema) {
     console.log(data);
+    navigate("/home");
   }
   return (
     <>
