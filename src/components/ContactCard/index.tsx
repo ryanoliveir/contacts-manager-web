@@ -1,7 +1,10 @@
-import { Phone, Mail, Pencil, LockKeyholeOpen, Trash } from "lucide-react";
+import { Phone, Mail, Pencil, Trash } from "lucide-react";
 import { getInitials, formatPhone } from "../../utils";
+import LockToggle from "../LockToogle";
+import { useContactStore } from "../../store/contacts";
+import { useEffect, useState } from "react";
 
-interface ContacCardtProps {
+interface ContacCardProps {
   id?: string;
   name: string;
   phone: string;
@@ -9,7 +12,16 @@ interface ContacCardtProps {
   tag?: string;
 }
 
-function ContactCard({ id, name, phone, email, tag }: ContacCardtProps) {
+function ContactCard({ name, phone, email, tag, isLock }: ContacCardProps) {
+  const [isIndividuallyOpen, setIsIndividuallyOpen] = useState(false);
+  const { isUnlocked } = useContactStore();
+
+  const showInfo = isUnlocked || isIndividuallyOpen;
+
+  function handleShowInfo() {
+    setIsIndividuallyOpen((prev) => !prev);
+  }
+
   return (
     <div className="bg-background-secondary flex flex-col gap-2  md:gap-4 p-3 rounded-[14px] md:grid md:grid-cols-6 md:items-center">
       <div className="flex gap-3 md:col-span-2">
@@ -29,21 +41,24 @@ function ContactCard({ id, name, phone, email, tag }: ContacCardtProps) {
       </div>
       <div className="flex gap-2 md:gap-2 text-label-medium text-content-body flex-row md:col-span-1 items-center">
         <Phone size={16} className="text-contenct-muted" />
-        <span>{formatPhone(phone)}</span>
+        <span>{showInfo ? formatPhone(phone) : "*".repeat(phone.length)}</span>
       </div>
 
       <div className="flex gap-2 md:gap-2 text-label-medium text-content-body flex-row md:col-span-2 items-center">
         <Mail size={16} className="text-contenct-muted " />
-        <span>{email}</span>
+        <span>{showInfo ? email : "*".repeat(email.length)}</span>
       </div>
       <div className="flex items-center gap-3 justify-end md:justify-start md:col-span-1">
         <button className="flex gap-2 w-19.5 h-8 text-small items-center py-2 p-3 pr-4 rounded-lg bg-background-tertiary text-white">
           <Pencil size={18} />
           Editar
         </button>
-        <button className="rounded-full h-10 px-3 text-accent-brand bg-lime-950">
-          <LockKeyholeOpen size={18} />
-        </button>
+
+        <LockToggle
+          className="md:block"
+          onToggle={handleShowInfo}
+          isLock={showInfo}
+        />
 
         <button className="rounded-full h-10 px-3 bg-background-tertiary text-white hover:bg-red-950 hover:text-red-400">
           <Trash size={18} />

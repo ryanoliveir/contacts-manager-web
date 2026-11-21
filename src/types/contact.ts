@@ -12,4 +12,6 @@ export type Contacts = {
 
 export type ContactStore = {
   contacts: Contact[];
+  isUnlocked: boolean;
+  toggleGlobalUnlock: () => void;
 };

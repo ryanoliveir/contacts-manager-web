@@ -1,17 +1,12 @@
 import { Plus } from "lucide-react";
-import { useState } from "react";
 import SearchInput from "../../components/SearchInput";
 import GuardMobileIcon from "../../assets/guard-icon-app.svg";
 import LockToggle from "../../components/LockToogle";
 import CardSection from "../../components/CardSection";
+import { useContactStore } from "../../store/contacts";
 
 function Home() {
-  const [toggleLockInfo, setToggleLockInfo] = useState(true);
-
-  function handleToggleLockInfo() {
-    setToggleLockInfo(!toggleLockInfo);
-  }
-
+  const { isUnlocked, toggleGlobalUnlock } = useContactStore();
   return (
     <div className="py-4 px-6 md:p-10 flex flex-col gap-10">
       <div className="gap-y-4 text-content-primary flex flex-col md:flex-row justify-between md:items-center">
@@ -19,11 +14,9 @@ function Home() {
           <img src={GuardMobileIcon} alt="" className="w-5 h-5 md:hidden" />
           <div className="font-bold text-heading">Lista de Contatos</div>
           <LockToggle
-            isLock={toggleLockInfo}
             className="md:hidden"
-            onToggle={function (): void {
-              throw new Error("Function not implemented.");
-            }}
+            onToggle={toggleGlobalUnlock}
+            isLock={isUnlocked}
           />
         </div>
 
@@ -34,9 +27,9 @@ function Home() {
             Adicionar contato
           </button>
           <LockToggle
-            onToggle={handleToggleLockInfo}
-            isLock={toggleLockInfo}
             className="hidden md:block"
+            onToggle={toggleGlobalUnlock}
+            isLock={isUnlocked}
           />
         </div>
       </div>

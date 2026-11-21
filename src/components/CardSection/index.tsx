@@ -2,8 +2,7 @@ import { useContactStore } from "../../store/contacts";
 import ContactCard from "../ContactCard";
 
 function CardSection() {
-  const { contacts } = useContactStore();
-
+  const { contacts, isUnlocked } = useContactStore();
   const hasContacts = contacts.length > 0;
   return (
     <section className="">

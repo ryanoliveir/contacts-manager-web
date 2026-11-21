@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import type { Contact, ContactStore } from "../types/contact";
+import type { ContactStore } from "../types/contact";
 import { uuidv4 as uuid } from "zod";
 
 export const useContactStore = create<ContactStore>((set, get) => ({
@@ -36,4 +36,6 @@ export const useContactStore = create<ContactStore>((set, get) => ({
       email: "lucas_andrade@mail.com",
     },
   ],
+  isUnlocked: false,
+  toggleGlobalUnlock: () => set((state) => ({ isUnlocked: !state.isUnlocked })),
 }));
