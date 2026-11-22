@@ -1,8 +1,19 @@
+import { useState } from "react";
 import { useContactStore } from "../../store/contacts";
 import ContactCard from "../ContactCard";
+import ConfirmModal from "../ConfirmModal";
 
 function CardSection() {
-  const { contacts } = useContactStore();
+  const { contacts, deleteContact } = useContactStore();
+  const [contactToDelete, setContactToDelete] = useState<string | null>(null);
+
+  function handleRemoveContact() {
+    if (contactToDelete) {
+      deleteContact(contactToDelete);
+      setContactToDelete(null);
+    }
+  }
+
   const hasContacts = contacts.length > 0;
   return (
     <section className="">
@@ -15,12 +26,29 @@ function CardSection() {
       <div className="flex flex-col gap-5">
         {hasContacts ? (
           contacts.map((contact) => {
-            return <ContactCard key={contact.id} {...contact} />;
+            return (
+              <ContactCard
+                key={contact.id}
+                {...contact}
+                onDelete={() => setContactToDelete(contact.id)}
+              />
+            );
           })
         ) : (
           <div>Sem contatos ainda</div>
         )}
       </div>
+      {contactToDelete && (
+        <ConfirmModal
+          title="Remover contato"
+          message="Essa ação não pode ser desfeita."
+          type="danger"
+          closeButtonLabel="Cencelar"
+          confirmButtonLabel="Remover"
+          onClose={() => setContactToDelete(null)}
+          onConfirm={() => handleRemoveContact()}
+        />
+      )}
     </section>
   );
 }

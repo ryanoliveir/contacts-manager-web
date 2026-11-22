@@ -5,14 +5,22 @@ import { useContactStore } from "../../store/contacts";
 import { useState } from "react";
 
 interface ContacCardProps {
-  id?: string;
+  id: string;
   name: string;
   phone: string;
   email: string;
   tag?: string;
+  onDelete: (id: string) => void;
 }
 
-function ContactCard({ name, phone, email, tag }: ContacCardProps) {
+function ContactCard({
+  id,
+  name,
+  phone,
+  email,
+  tag,
+  onDelete,
+}: ContacCardProps) {
   const [isIndividuallyOpen, setIsIndividuallyOpen] = useState(false);
   const { isUnlocked } = useContactStore();
 
@@ -60,7 +68,10 @@ function ContactCard({ name, phone, email, tag }: ContacCardProps) {
           isLock={showInfo}
         />
 
-        <button className="rounded-full h-10 px-3 bg-background-tertiary text-white hover:bg-red-950 hover:text-red-400">
+        <button
+          className="rounded-full h-10 px-3 bg-background-tertiary text-white hover:bg-red-950 hover:text-red-400"
+          onClick={() => onDelete(id)}
+        >
           <Trash size={18} />
         </button>
       </div>

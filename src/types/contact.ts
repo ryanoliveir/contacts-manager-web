@@ -1,5 +1,5 @@
 export type Contact = {
-  id?: string;
+  id: string;
   name: string;
   phone: string;
   email: string;
@@ -17,4 +17,5 @@ export type ContactStore = {
   validatedPassword: (input: string) => boolean;
   toggleGlobalUnlock: () => void;
   addContact: (data: Contact) => void;
+  deleteContact: (id: string) => void;
 };

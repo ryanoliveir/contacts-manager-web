@@ -101,4 +101,8 @@ export const useContactStore = create<ContactStore>((set, get) => ({
         { id: uuidv4(), name: data.name, phone: data.phone, email: data.email },
       ],
     })),
+  deleteContact: (id) =>
+    set((state) => ({
+      contacts: state.contacts.filter((contact) => contact.id !== id),
+    })),
 }));
