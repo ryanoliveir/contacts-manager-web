@@ -35,9 +35,70 @@ export const useContactStore = create<ContactStore>((set, get) => ({
       phone: "12921439706",
       email: "lucas_andrade@mail.com",
     },
+    {
+      id: uuidv4() as unknown as string,
+      name: "Lucas Andrade",
+      phone: "12921439706",
+      email: "lucas_andrade@mail.com",
+    },
+    {
+      id: uuidv4() as unknown as string,
+      name: "Lucas Andrade",
+      phone: "12921439706",
+      email: "lucas_andrade@mail.com",
+    },
+    {
+      id: uuidv4() as unknown as string,
+      name: "Lucas Andrade",
+      phone: "12921439706",
+      email: "lucas_andrade@mail.com",
+    },
+    {
+      id: uuidv4() as unknown as string,
+      name: "Lucas Andrade",
+      phone: "12921439706",
+      email: "lucas_andrade@mail.com",
+    },
+    {
+      id: uuidv4() as unknown as string,
+      name: "Lucas Andrade",
+      phone: "12921439706",
+      email: "lucas_andrade@mail.com",
+    },
+    {
+      id: uuidv4() as unknown as string,
+      name: "Lucas Andrade",
+      phone: "12921439706",
+      email: "lucas_andrade@mail.com",
+    },
+    {
+      id: uuidv4() as unknown as string,
+      name: "Lucas Andrade",
+      phone: "12921439706",
+      email: "lucas_andrade@mail.com",
+    },
+    {
+      id: uuidv4() as unknown as string,
+      name: "Lucas Andrade",
+      phone: "12921439706",
+      email: "lucas_andrade@mail.com",
+    },
+    {
+      id: uuidv4() as unknown as string,
+      name: "Lucas Andrade",
+      phone: "12921439706",
+      email: "lucas_andrade@mail.com",
+    },
   ],
   isUnlocked: false,
   showContactsPassword: "1234",
   toggleGlobalUnlock: () => set((state) => ({ isUnlocked: !state.isUnlocked })),
   validatedPassword: (input: string) => input === get().showContactsPassword,
+  addContact: (data) =>
+    set((state) => ({
+      contacts: [
+        ...state.contacts,
+        { id: uuidv4(), name: data.name, phone: data.phone, email: data.email },
+      ],
+    })),
 }));

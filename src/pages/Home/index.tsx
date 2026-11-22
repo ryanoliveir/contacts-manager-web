@@ -6,10 +6,12 @@ import CardSection from "../../components/CardSection";
 import { useContactStore } from "../../store/contacts";
 import UnlockModal from "../../components/UnlockModal";
 import { useState } from "react";
+import ContactForm from "../../components/ContactForm";
 
 function Home() {
   const { isUnlocked, toggleGlobalUnlock } = useContactStore();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isContactFormOpen, setIsContactFormOpen] = useState(false);
 
   function handleUnlockModal() {
     if (isUnlocked) {
@@ -39,9 +41,12 @@ function Home() {
 
         <div className="flex flex-col md:flex-row gap-4 md:gap-5 md:items-center">
           <SearchInput />
-          <button className="hidden md:flex gap-2  items-center py-2 p-3 pr-4 rounded-lg bg-background-tertiary ">
+          <button
+            className="fixed bottom-20 md:bottom-auto md:right-auto right-6 w-14 h-14 rounded-full md:text-inherit flex justify-center text-content-inverse md:w-auto md:h-auto md:relative md:flex gap-2  items-center md:py-2 md:p-3 md:pr-4 md:rounded-lg bg-accent-brand md:bg-background-tertiary shadow-[0_0_20px_rgba(196,241,32,0.6)] md:shadow-none"
+            onClick={() => setIsContactFormOpen(true)}
+          >
             <Plus size={18} />
-            Adicionar contato
+            <span className="hidden md:block">Adicionar contato</span>
           </button>
           <LockToggle
             className="hidden md:block"
@@ -55,6 +60,12 @@ function Home() {
         <UnlockModal
           onClose={() => setIsModalOpen(false)}
           onSuccess={handleConfirmPassword}
+        />
+      )}
+      {isContactFormOpen && (
+        <ContactForm
+          onClose={() => setIsContactFormOpen(false)}
+          onSuccess={() => setIsContactFormOpen(false)}
         />
       )}
     </div>

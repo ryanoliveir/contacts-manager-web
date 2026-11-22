@@ -3,9 +3,9 @@ import Sidebar from "../Sidebar";
 
 function MainLayout() {
   return (
-    <div className="flex">
+    <div className="flex h-screen">
       <Sidebar />
-      <div className="flex-1 bg-background-primary pb-20 md:pb-0">
+      <div className="flex-1 bg-background-primary pb-20 md:pb-0 overflow-y-auto">
         <Outlet />
       </div>
     </div>
