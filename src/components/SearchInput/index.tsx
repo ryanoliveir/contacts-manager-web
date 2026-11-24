@@ -1,7 +1,12 @@
 import Input from "../Input";
 import { Search } from "lucide-react";
 
-function SearchInput() {
+interface SearchInputProps {
+  value: string;
+  onChange: (value: string) => void;
+}
+
+function SearchInput({ value, onChange }: SearchInputProps) {
   return (
     <div className="relative w-full md:w-auto">
       <Search
@@ -13,6 +18,8 @@ function SearchInput() {
         type="text"
         name="search"
         className="pl-10 w-full"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
       />
     </div>
   );
