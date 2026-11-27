@@ -4,6 +4,8 @@ import LockToggle from "../LockToogle";
 import { useContactStore } from "../../store/contacts";
 import { useState } from "react";
 
+import CopyButton from "../CopyButton";
+
 interface ContacCardProps {
   id: string;
   name: string;
@@ -22,6 +24,7 @@ function ContactCard({
   onDelete,
 }: ContacCardProps) {
   const [isIndividuallyOpen, setIsIndividuallyOpen] = useState(false);
+
   const { isUnlocked } = useContactStore();
 
   const showInfo = isUnlocked || isIndividuallyOpen;
@@ -37,9 +40,12 @@ function ContactCard({
           {getInitials(name)}
         </div>
         <div className="flex flex-col gap-1">
-          <p className="text-content-body text-label-medium font-semibold">
-            {name}
-          </p>
+          <div className="flex  gap-3">
+            <p className="text-content-body text-label-medium font-semibold">
+              {name}
+            </p>
+            <CopyButton text={name} />
+          </div>
           {tag && (
             <div className="bg-background-tertiary rounded-2xl px-10 text-content-heading text-small w-17 h-4.5 flex justify-center">
               {tag}
@@ -50,11 +56,15 @@ function ContactCard({
       <div className="flex gap-2 md:gap-2 text-label-medium text-content-body flex-row md:col-span-1 items-center">
         <Phone size={16} className="text-contenct-muted" />
         <span>{showInfo ? formatPhone(phone) : "*".repeat(phone.length)}</span>
+        {isUnlocked && <CopyButton text={email} />}
       </div>
 
       <div className="flex gap-2 md:gap-2 text-label-medium text-content-body flex-row md:col-span-2 items-center">
         <Mail size={16} className="text-contenct-muted " />
-        <span>{showInfo ? email : "*".repeat(email.length)}</span>
+        <span className="cursor-pointer">
+          {showInfo ? email : "*".repeat(email.length)}
+        </span>
+        {isUnlocked && <CopyButton text={email} />}
       </div>
       <div className="flex items-center gap-3 justify-end md:justify-start md:col-span-1">
         <button className="flex gap-2 w-19.5 h-8 text-small items-center py-2 p-3 pr-4 rounded-lg bg-background-tertiary text-white">
