@@ -13,6 +13,7 @@ interface ContacCardProps {
   email: string;
   tag?: string;
   onDelete: (id: string) => void;
+  onEdit: () => void;
 }
 
 function ContactCard({
@@ -22,6 +23,7 @@ function ContactCard({
   email,
   tag,
   onDelete,
+  onEdit,
 }: ContacCardProps) {
   const [isIndividuallyOpen, setIsIndividuallyOpen] = useState(false);
 
@@ -67,7 +69,10 @@ function ContactCard({
         {isUnlocked && <CopyButton text={email} />}
       </div>
       <div className="flex items-center gap-3 justify-end md:justify-start md:col-span-1">
-        <button className="flex gap-2 w-19.5 h-8 text-small items-center py-2 p-3 pr-4 rounded-lg bg-background-tertiary text-white">
+        <button
+          className="flex gap-2 w-19.5 h-8 text-small items-center py-2 p-3 pr-4 rounded-lg bg-background-tertiary text-white"
+          onClick={onEdit}
+        >
           <Pencil size={18} />
           Editar
         </button>

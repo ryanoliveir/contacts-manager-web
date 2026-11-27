@@ -3,6 +3,8 @@ import { SearchX } from "lucide-react";
 import { useContactStore } from "../../store/contacts";
 import ContactCard from "../ContactCard";
 import ConfirmModal from "../ConfirmModal";
+import ContactForm from "../ContactForm";
+import type { Contact } from "../../types/contact";
 
 interface CardSectionProps {
   search: string;
@@ -11,6 +13,7 @@ interface CardSectionProps {
 function CardSection({ search }: CardSectionProps) {
   const { contacts, deleteContact } = useContactStore();
   const [contactToDelete, setContactToDelete] = useState<string | null>(null);
+  const [contactToEdit, setContactToEdit] = useState<Contact | null>(null);
 
   function handleRemoveContact() {
     if (contactToDelete) {
@@ -42,6 +45,7 @@ function CardSection({ search }: CardSectionProps) {
                 key={contact.id}
                 {...contact}
                 onDelete={() => setContactToDelete(contact.id)}
+                onEdit={() => setContactToEdit(contact)}
               />
             );
           })
@@ -68,6 +72,13 @@ function CardSection({ search }: CardSectionProps) {
           confirmButtonLabel="Remover"
           onClose={() => setContactToDelete(null)}
           onConfirm={() => handleRemoveContact()}
+        />
+      )}
+      {contactToEdit && (
+        <ContactForm
+          onClose={() => setContactToEdit(null)}
+          onSuccess={() => setContactToEdit(null)}
+          contact={contactToEdit}
         />
       )}
     </section>

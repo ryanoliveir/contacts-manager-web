@@ -29,66 +29,6 @@ export const useContactStore = create<ContactStore>((set, get) => ({
       phone: "12921439706",
       email: "lucas_andrade@mail.com",
     },
-    {
-      id: uuidv4() as unknown as string,
-      name: "Lucas Andrade",
-      phone: "12921439706",
-      email: "lucas_andrade@mail.com",
-    },
-    {
-      id: uuidv4() as unknown as string,
-      name: "Lucas Andrade",
-      phone: "12921439706",
-      email: "lucas_andrade@mail.com",
-    },
-    {
-      id: uuidv4() as unknown as string,
-      name: "Lucas Andrade",
-      phone: "12921439706",
-      email: "lucas_andrade@mail.com",
-    },
-    {
-      id: uuidv4() as unknown as string,
-      name: "Lucas Andrade",
-      phone: "12921439706",
-      email: "lucas_andrade@mail.com",
-    },
-    {
-      id: uuidv4() as unknown as string,
-      name: "Lucas Andrade",
-      phone: "12921439706",
-      email: "lucas_andrade@mail.com",
-    },
-    {
-      id: uuidv4() as unknown as string,
-      name: "Lucas Andrade",
-      phone: "12921439706",
-      email: "lucas_andrade@mail.com",
-    },
-    {
-      id: uuidv4() as unknown as string,
-      name: "Lucas Andrade",
-      phone: "12921439706",
-      email: "lucas_andrade@mail.com",
-    },
-    {
-      id: uuidv4() as unknown as string,
-      name: "Lucas Andrade",
-      phone: "12921439706",
-      email: "lucas_andrade@mail.com",
-    },
-    {
-      id: uuidv4() as unknown as string,
-      name: "Lucas Andrade",
-      phone: "12921439706",
-      email: "lucas_andrade@mail.com",
-    },
-    {
-      id: uuidv4() as unknown as string,
-      name: "Lucas Andrade",
-      phone: "12921439706",
-      email: "lucas_andrade@mail.com",
-    },
   ],
   isUnlocked: false,
   showContactsPassword: "1234",
@@ -104,5 +44,11 @@ export const useContactStore = create<ContactStore>((set, get) => ({
   deleteContact: (id) =>
     set((state) => ({
       contacts: state.contacts.filter((contact) => contact.id !== id),
+    })),
+  updateContact: (id, data) =>
+    set((state) => ({
+      contacts: state.contacts.map((contact) =>
+        contact.id == id ? { ...contact, ...data } : contact,
+      ),
     })),
 }));

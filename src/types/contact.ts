@@ -16,6 +16,7 @@ export type ContactStore = {
   showContactsPassword: string;
   validatedPassword: (input: string) => boolean;
   toggleGlobalUnlock: () => void;
-  addContact: (data: Contact) => void;
+  addContact: (data: Omit<Contact, "id">) => void;
   deleteContact: (id: string) => void;
+  updateContact: (id: string, data: Omit<Contact, "id">) => void;
 };

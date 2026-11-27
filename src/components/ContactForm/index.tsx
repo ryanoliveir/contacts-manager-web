@@ -9,24 +9,44 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Input from "../Input";
 import { useEffect } from "react";
 import { useContactStore } from "../../store/contacts";
+import type { Contact } from "../../types/contact";
+import { format, InputMask } from "@react-input/mask";
 
 interface ContactFormProps {
   onClose: () => void;
   onSuccess: () => void;
+  contact?: Contact;
 }
 
-function ContactForm({ onClose, onSuccess }: ContactFormProps) {
-  const { addContact } = useContactStore();
+function ContactForm({ onClose, onSuccess, contact }: ContactFormProps) {
+  const { addContact, updateContact } = useContactStore();
+
+  const maskOptions = {
+    mask: "(__) _____-____",
+    replacement: { _: /\d/ },
+  };
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<ContactFormSchema>({
     resolver: zodResolver(contactFormSchema),
+    defaultValues: contact
+      ? {
+          name: contact.name,
+          phone: format(contact.phone, maskOptions),
+          email: contact.email,
+        }
+      : undefined,
   });
 
   function onSubmit(data: ContactFormSchema) {
-    addContact(data);
+    if (contact) {
+      updateContact(contact.id, data);
+    } else {
+      addContact(data);
+    }
     onSuccess();
   }
 
@@ -40,7 +60,9 @@ function ContactForm({ onClose, onSuccess }: ContactFormProps) {
   return (
     <div className="fixed inset-0 z-50  flex items-end md:items-center justify-center bg-black/50">
       <form
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleSubmit(onSubmit, (errors) =>
+          console.log("erros:", errors),
+        )}
         action=""
         className="bg-background-secondary w-full md:w-95 p-5.5 text-content-primary flex flex-col gap-5  rounded-t-2xl md:rounded-2xl"
       >
@@ -82,9 +104,10 @@ function ContactForm({ onClose, onSuccess }: ContactFormProps) {
           </div>
           <div className="flex flex-col gap-1">
             <Label>Telefone</Label>
-            <Input
-              className="bg-background-primary"
+            <InputMask
+              className="bg-background-primary border border-border-primary text-medium h-10 p-3 rounded-lg placeholder:text-content-placeholder placeholder:text-medium hover:border-content-heading focus:border-accent-brand outline-none text-content-body font-sans w-full"
               {...register("phone")}
+              {...maskOptions}
               type="text"
               placeholder="Número de telefone"
             />
